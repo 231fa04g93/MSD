@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-// Inline keyframes styling: inject once in your app root or use styled-components / emotion for dynamic CSS-in-JS setup.
+// Injects the "glow" animation only once.
 const injectGlowAnimation = () => {
   if (document.getElementById("glow-keyframes")) return;
   const style = document.createElement("style");
   style.id = "glow-keyframes";
   style.textContent = `
     @keyframes glow {
-      0% { box-shadow: 0 0 14px 5px #f7e53a33; }
-      100% { box-shadow: 0 0 32px 10px #ffd70055; }
+      0% { box-shadow: 0 0 10px 1px #97b6dc44; }
+      100% { box-shadow: 0 0 24px 4px #6ccbd879; }
     }
   `;
   document.head.appendChild(style);
@@ -17,51 +17,55 @@ injectGlowAnimation();
 
 const styles = {
   container: {
-    height: "100vh",
+    minHeight: "100vh",
     width: "100vw",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    backgroundImage: "linear-gradient(120deg, #4b6cb7 0%, #182848 100%)",
-    position: "relative",
-    color: "#F1ECEC",
+    backgroundImage: "linear-gradient(120deg, #30475e 0%, #222831 100%)",
+    position: "fixed",
+    top: 0,
+    left: 0,
+    color: "#d3d3efff",
     textAlign: "center",
-    overflow: "hidden",
+    zIndex: 1,
+    overflow: "hidden", // Only needed on the fixed background container
+    background: "linear-gradient(120deg, #52708eff 0%, #a0acbdff 100%)"
   },
 
   overlay: {
-    background: "rgba(255,255,255, 0.10)",
-    padding: "60px 80px",
-    borderRadius: "28px",
-    boxShadow:
-      "0 12px 36px 0 rgba(30,30,60,0.25), 0 1.5px 18px 0 rgba(77,119,215,0.15)",
-    backdropFilter: "blur(14px)",
-    border: "3px solid",
-    borderImage:
-      "linear-gradient(135deg,#e7e3d5ff 0%, #cf8a8aff 100%) 1",
+    background: "rgba(255,255,255,0.09)",
+    padding: "56px 36px",
+    borderRadius: "20px",
+    boxShadow: "0 12px 38px 0 rgba(30,30,60,0.25)",
+    backdropFilter: "blur(13px)",
+    border: "2px solid #6e82a4ff",
     transition: "box-shadow 0.3s, transform 0.2s",
-    maxWidth: "650px",
+    width: "100%",
+    maxWidth: "430px",
+    margin: "0 auto",
   },
 
   title: {
-    fontSize: "3.2rem",
+    fontSize: "2.7rem",
     fontWeight: 800,
-    marginBottom: "1.2rem",
-    lineHeight: "1.1",
-    letterSpacing: "1.5px",
-    textShadow: "0 2px 12px rgba(40,40,40,0.07)",
-    transition: "letter-spacing 0.2s, text-shadow 0.2s",
+    marginBottom: "1.1rem",
+    lineHeight: "1.2",
+    letterSpacing: "1px",
+    textShadow: "0 2px 12px rgba(220, 219, 219, 0.09)",
+    color: "#4d6787ff", // Professional navy
     userSelect: "none",
+    transition: "letter-spacing 0.2s, text-shadow 0.2s",
   },
 
   highlight: {
-    color: "#ffefb6",
-    background: "linear-gradient(90deg,#ebeae6ff 70%,#fcb947 100%)",
-    padding: "0.13em 0.28em",
+    color: "#2196f3", // Professional blue accent
+    background: "linear-gradient(90deg,#dbeaf9 60%,#2196f3 100%)",
+    padding: "0.17em 0.41em",
     borderRadius: "8px",
-    boxShadow: "0 0 14px 5px #f7e53a33",
-    textShadow: "0 2px 6px #ffe01077",
+    boxShadow: "0 0 10px 2px #dde7f1c0",
+    textShadow: "0 2px 6px #afd6fd88",
     fontWeight: "900",
     letterSpacing: "1px",
     animation: "glow 2s alternate infinite",
@@ -69,12 +73,12 @@ const styles = {
   },
 
   subtitle: {
-    fontSize: "1.36rem",
-    color: "#e0e0e0",
+    fontSize: "1.17rem",
+    color: "#dfeefaff",
     marginBottom: "2rem",
-    lineHeight: "1.65",
-    textShadow: "0 1px 4px rgba(32,32,32,0.08)",
-    maxWidth: "480px",
+    lineHeight: "1.6",
+    textShadow: "0 1px 4px rgba(32,36,64,0.08)",
+    maxWidth: "400px",
     margin: "0 auto 2rem auto",
   },
 
@@ -82,88 +86,87 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
-    gap: "1.2rem",
-    marginTop: "1rem",
+    gap: "1.15rem",
+    marginTop: "0.8rem",
   },
 
   button: {
-    padding: "16px 42px",
-    fontSize: "1.08rem",
+    padding: "13px 36px",
+    fontSize: "1.04rem",
     fontWeight: 700,
-    borderRadius: "12px",
+    borderRadius: "9px",
     cursor: "pointer",
     border: "none",
-    boxShadow: "0 2px 16px rgba(21,21,58,0.13)",
+    boxShadow: "0 2px 13px rgba(21,21,58,0.13)",
     outline: "none",
     transition:
-      "background 0.21s, color 0.21s, transform 0.16s, box-shadow 0.16s, border 0.22s",
-    letterSpacing: "0.5px",
+      "background 0.21s, color 0.21s, transform 0.17s, box-shadow 0.16s, border 0.22s",
+    letterSpacing: "0.43px",
     margin: "0",
   },
 
   primaryButton: {
-    backgroundImage: "linear-gradient(92deg, #e7e3d5ff 0%, #fdd273 90%)",
-    color: "#222",
-    boxShadow:
-      "0 7px 22px 0 rgba(255, 204, 51, 0.18), 0 2px 8px 0 rgba(220,220,105,0.10)",
+    backgroundImage: "linear-gradient(92deg,#e8f0fc 0%,#90caf9 90%)",
+    color: "#1e2a38",
+    boxShadow: "0 6px 15px 0 rgba(33,150,243,0.14), 0 2px 8px 0 rgba(160,219,255,0.10)",
     fontWeight: "bold",
-    border: "2px solid #ffe68e60",
+    border: "2px solid #92bfe3ff",
   },
 
   secondaryButton: {
-    backgroundColor: "rgba(44,44,82,0.6)",
-    color: "#fff",
-    border: "2px solid #fff",
+    backgroundColor: "rgba(46,60,94,0.64)",
+    color: "#ffffffff",
+    border: "2px solid #2196f3",
     fontWeight: "bold",
-    boxShadow: "0 2px 8px 0 rgba(77,119,215,0.12)",
+    boxShadow: "0 2px 8px 0 rgba(33,150,243,0.10)",
   },
 };
 
 const HomePage = ({ setCurrentPage }) => {
-  // Optional hover state for button animations
   const [hoveredBtn, setHoveredBtn] = useState(null);
 
   return (
     <div style={styles.container}>
       <div style={styles.overlay}>
         <h1 style={styles.title}>
-          Welcome to Your
-          {" "}
+          Welcome to Your{" "}
           <span style={styles.highlight}>Expense Tracker</span>
         </h1>
         <p style={styles.subtitle}>
           Take control of your finances with a simple, intuitive interface.
         </p>
         <div style={styles.buttonContainer}>
-          {/* Get Started Button */}
           <button
             onClick={() => setCurrentPage("signup")}
             style={{
               ...styles.button,
               ...styles.primaryButton,
-              ...(hoveredBtn === "signup" ? {
-                transform: "scale(1.055)",
-                boxShadow:
-                  "0 12px 36px rgba(255,216,110,0.23), 0 4px 14px 0 rgba(255,204,51,0.08)"
-              } : {})
+              ...(hoveredBtn === "signup"
+                ? {
+                    transform: "scale(1.045)",
+                    boxShadow:
+                      "0 14px 38px rgba(33,150,243,0.23), 0 6px 20px 0 rgba(160,219,255,0.09)",
+                  }
+                : {}),
             }}
             onMouseEnter={() => setHoveredBtn("signup")}
             onMouseLeave={() => setHoveredBtn(null)}
           >
             Get Started
           </button>
-          {/* Login Button */}
           <button
             onClick={() => setCurrentPage("login")}
             style={{
               ...styles.button,
               ...styles.secondaryButton,
-              ...(hoveredBtn === "login" ? {
-                backgroundColor: "rgba(44,44,82,0.93)",
-                border: "2.2px solid #fcb947",
-                color: "#fcb947",
-                transform: "scale(1.035)"
-              } : {})
+              ...(hoveredBtn === "login"
+                ? {
+                    backgroundColor: "#1565c0",
+                    border: "2.2px solid #1565c0",
+                    color: "#f4f4f4ff",
+                    transform: "scale(1.04)",
+                  }
+                : {}),
             }}
             onMouseEnter={() => setHoveredBtn("login")}
             onMouseLeave={() => setHoveredBtn(null)}
