@@ -6,7 +6,7 @@ import SignUpPage from './components/SignUpPage.jsx';
 import DashboardPage from './components/DashboardPage.jsx';
 import ProfilePage from './components/ProfilePage.jsx';
 import axios from 'axios';
-import './Index.css';
+import './index.css';
 
 const API_URL = 'https://msd-backend-nqln.onrender.com'
 // const API_URL = 'http://localhost:5001'
