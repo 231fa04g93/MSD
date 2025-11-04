@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API = axios.create({
   // baseURL: 'http://localhost:5001/api',
-  baseURL: 'https://expense-tracer-backend-34qu.vercel.app/api',
+  baseURL: 'https://msd-backend-nqln.onrender.com/api',
   headers: {
     'Content-Type': 'application/json',
   },
