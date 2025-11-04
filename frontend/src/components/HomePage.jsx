@@ -89,7 +89,7 @@ const styles = {
   },
 
   primaryButton: {
-    backgroundColor: "#ffcc33",
+    backgroundColor: "#e7e3d5ff",
     color: "#222",
     boxShadow: "0 5px 15px rgba(255, 204, 51, 0.4)",
   },
