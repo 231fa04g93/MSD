@@ -8,7 +8,7 @@ import ProfilePage from './components/ProfilePage.jsx';
 import axios from 'axios';
 import './Index.css';
 
-const API_URL = 'https://expense-tracer-backend-34qu.vercel.app'
+const API_URL = 'https://msd-backend-nqln.onrender.com'
 // const API_URL = 'http://localhost:5001'
 
 const App = () => {
